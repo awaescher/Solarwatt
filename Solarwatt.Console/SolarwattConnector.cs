@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Solarwatt.Console
 {
@@ -17,7 +18,7 @@ namespace Solarwatt.Console
 			_username = username;
 
 			string url = "https://auth.energy-manager.de/login";
-			_client = new RestClient(url);
+			_client = new RestClient(url) { CookieContainer = new CookieContainer() };
 			_client.BaseUrl = new Uri(url);
 			var request = new RestRequest(Method.POST);
 
