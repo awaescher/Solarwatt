@@ -27,7 +27,13 @@ namespace Solarwatt.Console
             request.AddParameter("password", "");
             request.AddParameter("autologin", "false");
             request.AddParameter("channel", "solarwatt");
-            request.AddParameter("originalRequest", "/authorize?response_type=code&amp;redirect_uri=https%3A%2F%2Fdesktop.energy-manager.de%2Frest%2Fauth%2Fauth_grant&amp;state=&amp;client_id=kiwigrid.desktop&amp;overrideRedirectUri=true");
+            request.AddParameter("originalRequest", "" +
+                "/authorize?response_type=code&amp;" +
+                "redirect_uri=https://desktop.energy-manager.de/rest/auth/auth_grant&amp;" +
+                "state=&amp;" +
+                "client_id=kiwigrid.desktop&amp;" +
+                "overrideRedirectUri=true");
+
             client.Timeout = 30 * 1000;
 
             var response = client.Execute(request);
