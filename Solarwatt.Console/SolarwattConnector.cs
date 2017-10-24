@@ -10,9 +10,12 @@ namespace Solarwatt.Console
 	internal class SolarwattConnector
 	{
 		private RestClient _client;
+		private string _username;
 
 		public void Login(string username, string password)
 		{
+			_username = username;
+
 			string url = "https://auth.energy-manager.de/login";
 			_client = new RestClient(url);
 			_client.BaseUrl = new Uri(url);
@@ -51,7 +54,6 @@ namespace Solarwatt.Console
 			_client.BaseUrl = new Uri(url);
 			var request = new RestRequest(Method.POST);
 
-
 			request.AddHeader("Host", "solarwatt-exportbackend.kiwigrid.com");
 			request.AddHeader("Accept", "application/json, text/plain, */*");
 			request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
@@ -61,12 +63,23 @@ namespace Solarwatt.Console
 			request.AddHeader("Accept-Encoding", "gzip, deflate, br");
 			request.AddHeader("Origin", "https://export.energy-manager.de");
 			request.AddHeader("Referer", "https://export.energy-manager.de/index.html");
+			request.AddHeader("token", GetToken(_username));
 
 			request.AddParameter("application/json", json, ParameterType.RequestBody);
 
 			_client.Timeout = 10 * 1000;
 
 			var response = _client.Execute(request);
+		}
+
+		private string GetToken(string username)
+		{
+			string content = @"
+{'client_id':'solarwatt.export','user_id':'%USER_NAME%','client_type':'application','session_id':'0af66c12-4355-4016-9eed-7eb783f570f5','session':{'type':'normal'},'scope':['FileService.read_files','FileService.manage_files','manage_devices','read_app_info','read_tagvalue_history','read_users','manage_users','read_devices','impex_tagvalue_history'],'expiration':1508525001931,'channel':'solarwatt','accessible_channels':['solarwatt']}.8AiiTt3ESm9zT7JH9zNhj2EXGDg=
+".Replace("'", "\"").Replace("%USER_NAME%", username);
+
+			var bytes = Encoding.UTF8.GetBytes(content);
+			return Convert.ToBase64String(bytes);
 		}
 	}
 }

@@ -12,9 +12,8 @@ namespace Solarwatt.Console
 		static void Main(string[] args)
 		{
 			var connector = new SolarwattConnector();
-			connector.Login("", "");
-			connector.GetExport("");
-
+			connector.Login("your_user", "your_pass");
+			connector.GetExport("your_device_location"); // like XXX00-000000000:0
 		}
 	}
 }
