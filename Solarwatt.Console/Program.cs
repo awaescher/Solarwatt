@@ -27,7 +27,7 @@ namespace Solarwatt.Console
 
 			var connector = new SolarwattConnector(connection);
 			connector.Login();
-			connector.GetExport();
+			connector.GetExport(DateTime.Today);
 		}
 
 		private static string ReadConsoleLineWithFallback(string fallback)
