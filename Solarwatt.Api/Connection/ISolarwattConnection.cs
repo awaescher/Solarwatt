@@ -3,10 +3,16 @@
 	public interface ISolarwattConnection
 	{
 		/// <summary>
+		/// Gets the device full name like "Lastname, City", for example
+		/// </summary>
+		/// <returns></returns>
+		string DeviceName { get; }
+
+		/// <summary>
 		/// Gets the username to log in.
 		/// </summary>
 		/// <returns></returns>
-		string Username { get; }
+		string UserName { get; }
 
 		/// <summary>
 		/// Gets the password to log in

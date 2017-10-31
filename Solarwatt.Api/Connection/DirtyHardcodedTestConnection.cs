@@ -20,15 +20,17 @@ namespace Solarwatt.Api.Connection
 			}
 			catch { }
 
-			if (_data?.Length != 3)
+			if (_data?.Length != 4)
 				_data = null;
 		}
 
-		public string Username => _data?.ElementAt(0) ?? "";
+		public string DeviceName => _data?.ElementAt(0) ?? "";
 
-		public string Password => _data?.ElementAt(1) ?? "";
+		public string UserName => _data?.ElementAt(1) ?? "";
 
-		public string DeviceLocation => _data?.ElementAt(2) ?? "";
+		public string Password => _data?.ElementAt(2) ?? "";
+
+		public string DeviceLocation => _data?.ElementAt(3) ?? "";
 
 		public string ProxyUserDomain { get; set; }
 

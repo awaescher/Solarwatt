@@ -14,7 +14,7 @@ namespace Solarwatt.Console
 		{
 			var connection = new DirtyHardcodedTestConnection();
 
-			System.Console.WriteLine("Press \"P\" to add proxy credentials: ");
+			System.Console.WriteLine("Press \"P\" to add proxy credentials or any other key to proceed.");
 			if (System.Console.ReadKey().Key == ConsoleKey.P)
 			{
 				System.Console.Write($"Enter your username	(Press [Return] for \"{Environment.UserName}\"): ");
