@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="Connection\ISolarwattConnection.cs" />
     <Compile Include="Connection\DirtyHardcodedTestConnection.cs" />
+    <Compile Include="Dto\LoginResponse.cs" />
+    <Compile Include="Helper\DateRange.cs" />
+    <Compile Include="Helper\DateUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolarwattConnector.cs" />
   </ItemGroup>

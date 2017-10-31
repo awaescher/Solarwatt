@@ -27,7 +27,31 @@ namespace Solarwatt.Console
 
 			var connector = new SolarwattConnector(connection);
 			connector.Login();
-			connector.GetExport(DateTime.Today);
+
+			// Last 7 days
+			const int days = 1;
+			System.Console.WriteLine($"Overview: Last {days} days");
+
+			var export = connector.GetTotals(DateTime.Today.AddDays(-1 * (days)), DateTime.Today);
+			System.Console.WriteLine(export);
+
+			export = connector.GetTodayTotal();
+			System.Console.WriteLine(export);
+
+			// Details today
+
+			//System.Console.WriteLine("Today (15m internal):");
+			//export = connector.GetExport(DateTime.Today);
+
+			System.Console.WriteLine(export);
+			
+			System.Console.WriteLine();
+
+
+
+			System.Console.WriteLine();
+			System.Console.WriteLine("Press any key to quit.");
+			System.Console.ReadKey();
 		}
 
 		private static string ReadConsoleLineWithFallback(string fallback)
