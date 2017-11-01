@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Solarwatt.Api.Dto;
 
 namespace Solarwatt.Console
 {
@@ -28,26 +29,24 @@ namespace Solarwatt.Console
 			var connector = new SolarwattConnector(connection);
 			connector.Login();
 
-			// Last 7 days
-			const int days = 1;
-			System.Console.WriteLine($"Overview: Last {days} days");
+			var export = new List<ExportRow>();
 
-			var export = connector.GetTotals(DateTime.Today.AddDays(-1 * (days)), DateTime.Today);
-			System.Console.WriteLine(export);
-
-			export = connector.GetTodayTotal();
-			System.Console.WriteLine(export);
-
-			// Details today
-
-			//System.Console.WriteLine("Today (15m internal):");
-			//export = connector.GetExport(DateTime.Today);
-
-			System.Console.WriteLine(export);
+			const int DAYS = 7;
 			
-			System.Console.WriteLine();
+			// Passed days
+			System.Console.WriteLine($"Overview: Last {DAYS} days");
 
+			var yesterday = DateTime.Today.AddDays(-1);
+			var daysFromYesterday = DAYS - 1;
+			export.AddRange(connector.GetExport(yesterday.AddDays(-1 * (daysFromYesterday)), yesterday, 60));
+			
+			// Today (finer interval because this is still happening)
+			export.AddRange(connector.GetExport(DateTime.Today));
 
+			foreach (var exportRow in export)
+			{
+				System.Console.WriteLine(exportRow.ToString());
+			}
 
 			System.Console.WriteLine();
 			System.Console.WriteLine("Press any key to quit.");
