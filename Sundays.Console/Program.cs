@@ -51,7 +51,7 @@ namespace Solarwatt.Console
 
 			const int DAYS = 7;
 			System.Console.WriteLine($"Overview: Last {DAYS} days");
-			var from = DateTime.Today.AddDays(-1 * DAYS);
+			var from = DateTime.Today.AddDays(-1 * (DAYS  - 1));
 			var days = provider.Get(from, DateTime.Today);
 
 			foreach (var day in days)
