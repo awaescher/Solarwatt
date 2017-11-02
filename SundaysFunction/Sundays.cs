@@ -15,8 +15,10 @@ namespace SundaysFunction
 	{
 		[FunctionName("Sundays")]
 		public static HttpResponseMessage Run(
-			[HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "user/{user}/password/{password}/devicelocation/{deviceLocation}/devicename/{deviceName}")]
+			[HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "from/{from}/to/{to}/user/{user}/password/{password}/devicelocation/{deviceLocation}/devicename/{deviceName}")]
 			HttpRequestMessage req,
+			DateTime from,
+			DateTime to,
 			string user,
 			string password,
 			string deviceLocation,
@@ -36,7 +38,7 @@ namespace SundaysFunction
 				new SolarwattExportSundayConverter()
 				);
 
-			var export = provider.Get(DateTime.Today.AddDays(-7), DateTime.Today);
+			var export = provider.Get(from, to);
 
 			// Fetching the name from the path parameter in the request URL
 			return req.CreateResponse(HttpStatusCode.OK, export);

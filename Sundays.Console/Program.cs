@@ -14,7 +14,7 @@ namespace Solarwatt.Console
 	{
 		static void Main(string[] args)
 		{
-			const bool USE_LIVE = false;
+			const bool USE_LIVE = true;
 
 			var container = TinyIoC.TinyIoCContainer.Current;
 
