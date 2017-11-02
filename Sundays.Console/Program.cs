@@ -1,17 +1,40 @@
 ﻿using Solarwatt.Api;
 using Solarwatt.Api.Connection;
+using Solarwatt.Api.Repositories;
+using Sundays;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Solarwatt.Api.Dto;
 
 namespace Solarwatt.Console
 {
 	class Program
 	{
 		static void Main(string[] args)
+		{
+			const bool USE_LIVE = true;
+
+			var container = TinyIoC.TinyIoCContainer.Current;
+
+			container.Register<ISundayProvider, SolarwattSundayProvider>();
+			container.Register<SundayConverter, SolarwattExportSundayConverter>();
+
+			if (USE_LIVE)
+			{
+				container.Register<IExportRepository, LiveWebserviceExportRepository>().AsSingleton();
+				container.Register<ISolarwattConnection, DirtyHardcodedTestConnection>();
+			}
+			else
+			{
+				container.Register<IExportRepository, TestExportRepository>();
+			}
+
+			Run(container.Resolve<ISundayProvider>());
+		}
+
+		static void Run(ISundayProvider provider)
 		{
 			var connection = new DirtyHardcodedTestConnection();
 
@@ -26,27 +49,13 @@ namespace Solarwatt.Console
 				connection.ProxyPassword = ReadPassword();
 			}
 
-			var connector = new SolarwattConnector(connection);
-			connector.Login();
-
-			var export = new List<ExportRow>();
-
 			const int DAYS = 7;
-			
-			// Passed days
 			System.Console.WriteLine($"Overview: Last {DAYS} days");
+			var from = DateTime.Today.AddDays(-1 * DAYS);
+			var days = provider.Get(from, DateTime.Today);
 
-			var yesterday = DateTime.Today.AddDays(-1);
-			var daysFromYesterday = DAYS - 1;
-			export.AddRange(connector.GetExport(yesterday.AddDays(-1 * (daysFromYesterday)), yesterday, 60));
-			
-			// Today (finer interval because this is still happening)
-			export.AddRange(connector.GetExport(DateTime.Today));
-
-			foreach (var exportRow in export)
-			{
-				System.Console.WriteLine(exportRow.ToString());
-			}
+			foreach (var day in days)
+				System.Console.WriteLine(day.ToString());
 
 			System.Console.WriteLine();
 			System.Console.WriteLine("Press any key to quit.");

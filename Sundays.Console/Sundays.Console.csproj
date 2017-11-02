@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7F47F54A-895E-465B-9A16-FD4F2EB5A21B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Solarwatt.Console</RootNamespace>
-    <AssemblyName>Solarwatt.Console</AssemblyName>
+    <RootNamespace>Sundays.Console</RootNamespace>
+    <AssemblyName>Sundays.Console</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,16 +44,22 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinyIoC.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solarwatt.Api\Solarwatt.Api.csproj">
       <Project>{6fefe707-1e2f-42fb-b5c2-1ab3b03989ed}</Project>
       <Name>Solarwatt.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sundays\Sundays.csproj">
+      <Project>{461EFFE1-19AD-48AB-88D1-C79974E49789}</Project>
+      <Name>Sundays</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
