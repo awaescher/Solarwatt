@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connection\SolarwattConnection.cs" />
     <Compile Include="Connection\ISolarwattConnection.cs" />
     <Compile Include="Connection\DirtyHardcodedTestConnection.cs" />
     <Compile Include="Dto\LoginResponse.cs" />

@@ -22,6 +22,8 @@ namespace Solarwatt.Api
 
 		public static Sunday FromCsv(string line)
 		{
+			var culture = new System.Globalization.CultureInfo("de-DE");
+
 			const int PROPERTY_COUNT = 13;
 
 			var values = line.Split(new string[] { SPLITTER }, StringSplitOptions.None);
@@ -31,27 +33,27 @@ namespace Solarwatt.Api
 
 			var row = new Sunday()
 			{
-				Date = System.Convert.ToDateTime(values[0]),
-				PowerConsumptionWh = TryParseSingle(values[1]),
-				PowerGenerationWh = TryParseSingle(values[2]),
-				FeedInWh = TryParseSingle(values[3]),
-				PurchaseWh = TryParseSingle(values[4]),
-				BatterySupplyWh = TryParseSingle(values[5]),
-				BatteryChargeWh = TryParseSingle(values[6]),
-				BatteryChargePercent = TryParseSingle(values[7]),
-				PrivateUseWh = TryParseSingle(values[8]),
-				FeedIn2Wh = TryParseSingle(values[9]),
-				PrivateUseFromPvWh = TryParseSingle(values[10]),
-				PowerGenerationAtLocationWh = TryParseSingle(values[11]),
-				PowerGenerationTotalWh = TryParseSingle(values[12])
+				Date = System.Convert.ToDateTime(values[0], culture),
+				PowerConsumptionWh = TryParseSingle(values[1], culture),
+				PowerGenerationWh = TryParseSingle(values[2], culture),
+				FeedInWh = TryParseSingle(values[3], culture),
+				PurchaseWh = TryParseSingle(values[4], culture),
+				BatterySupplyWh = TryParseSingle(values[5], culture),
+				BatteryChargeWh = TryParseSingle(values[6], culture),
+				BatteryChargePercent = TryParseSingle(values[7], culture),
+				PrivateUseWh = TryParseSingle(values[8], culture),
+				FeedIn2Wh = TryParseSingle(values[9], culture),
+				PrivateUseFromPvWh = TryParseSingle(values[10], culture),
+				PowerGenerationAtLocationWh = TryParseSingle(values[11], culture),
+				PowerGenerationTotalWh = TryParseSingle(values[12], culture)
 			};
 
 			return row;
 		}
 
-		private static float TryParseSingle(string value)
+		private static float TryParseSingle(string value, IFormatProvider formatProvider)
 		{
-			if (Single.TryParse(value, out float parsedValue))
+			if (Single.TryParse(value, System.Globalization.NumberStyles.Any, formatProvider, out float parsedValue))
 				return parsedValue;
 
 			return 0.0f;
