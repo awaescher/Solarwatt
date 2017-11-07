@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Sundays.Client.App"
-             x:Class="Sundays.Client.App.MainPage">
+   <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:Sundays.Client.App"
+                xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
+                x:Class="Sundays.Client.App.MainPage">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <microcharts:ChartView x:Name="chartView" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

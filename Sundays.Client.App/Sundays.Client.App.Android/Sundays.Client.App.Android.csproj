@@ -53,8 +53,32 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microcharts">
+      <HintPath>..\..\packages\Microcharts.0.7.1\lib\MonoAndroid10\Microcharts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microcharts.Droid">
+      <HintPath>..\..\packages\Microcharts.0.7.1\lib\MonoAndroid10\Microcharts.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microcharts.Forms">
+      <HintPath>..\..\packages\Microcharts.Forms.0.7.1\lib\netstandard1.4\Microcharts.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="SkiaSharp">
+      <HintPath>..\..\packages\SkiaSharp.1.59.1\lib\MonoAndroid\SkiaSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Android">
+      <HintPath>..\..\packages\SkiaSharp.Views.1.59.1.1\lib\MonoAndroid\SkiaSharp.Views.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.1.1\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -91,6 +115,10 @@
       <HintPath>..\..\packages\Xamarin.Android.Support.Media.Compat.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.Media.Compat.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Transition">
+      <HintPath>..\..\packages\Xamarin.Android.Support.Transition.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.Transition.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\..\packages\Xamarin.Android.Support.v4.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.v4.dll</HintPath>
       <Private>True</Private>
@@ -105,6 +133,10 @@
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
       <HintPath>..\..\packages\Xamarin.Android.Support.v7.MediaRouter.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.Palette">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.Palette.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.v7.Palette.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
@@ -175,6 +207,8 @@
     <Error Condition="!Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Vector.Drawable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Android.Support.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Vector.Drawable.targets'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Android.Support.Transition.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Transition.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Android.Support.Transition.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Transition.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Android.Support.v7.Palette.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.v7.Palette.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Android.Support.v7.Palette.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.v7.Palette.targets'))" />
   </Target>
   <Import Project="..\..\packages\Xamarin.Android.Support.Compat.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Compat.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets')" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Core.UI.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Core.UI.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Core.UI.targets')" />
@@ -189,6 +223,8 @@
   <Import Project="..\..\packages\Xamarin.Android.Support.v7.RecyclerView.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.v7.RecyclerView.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.v7.RecyclerView.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.v7.RecyclerView.targets')" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\Xamarin.Android.Support.Transition.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Transition.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Transition.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Transition.targets')" />
+  <Import Project="..\..\packages\Xamarin.Android.Support.v7.Palette.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.v7.Palette.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.v7.Palette.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.v7.Palette.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

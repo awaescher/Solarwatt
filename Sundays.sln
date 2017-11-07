@@ -22,6 +22,8 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Sundays.Client.App\Sundays.Client.App\Sundays.Client.App.projitems*{101bd4ac-8938-4771-b694-40f61918dcf6}*SharedItemsImports = 4
+		Sundays.Client.App\Sundays.Client.App\Sundays.Client.App.projitems*{cf20698b-427f-45da-89a9-4e7998d69d5e}*SharedItemsImports = 4
+		Sundays.Client.App\Sundays.Client.App\Sundays.Client.App.projitems*{d14e3f26-1820-4fef-9015-e42c8e8b4e05}*SharedItemsImports = 4
 		Sundays.Client.App\Sundays.Client.App\Sundays.Client.App.projitems*{df1a2023-ffcf-45cd-99f2-723c8215ef7b}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
