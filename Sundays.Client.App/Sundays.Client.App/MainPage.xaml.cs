@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using SkiaSharp;
 using Microcharts;
+using System.Threading;
 
 namespace Sundays.Client.App
 {
@@ -22,34 +23,101 @@ namespace Sundays.Client.App
 
 			var entries = new[]
 			{
-				new Microcharts.Entry(200)
+				new Microcharts.Entry(10957)
 				{
-					Label = "January",
-					ValueLabel = "200",
+					Label = "Wednesday",
+					ValueLabel = "10,9",
 					Color = SKColor.Parse("#266489")
 				},
-				new Microcharts.Entry(400)
+				new Microcharts.Entry(12427)
 				{
-					Label = "February",
-					ValueLabel = "400",
+					Label = "Thursday",
+					ValueLabel = "12,4",
 					Color = SKColor.Parse("#68B9C0")
 				},
-				new Microcharts.Entry(-100)
+				new Microcharts.Entry(14430)
 					{
-					Label = "March",
-					ValueLabel = "-100",
+					Label = "Friday",
+					ValueLabel = "14,4",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(17114)
+					{
+					Label = "Saturday",
+					ValueLabel = "17,1",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(11986)
+					{
+					Label = "Sunday",
+					ValueLabel = "11,9",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(12804)
+					{
+					Label = "Monday",
+					ValueLabel = "12,8",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(10813)
+					{
+					Label = "Tuesday",
+					ValueLabel = "10,8",
 					Color = SKColor.Parse("#90D585")
 				}
 			};
 
 			var chart = new BarChart() { Entries = entries };
-			// or: var chart = new PointChart() { Entries = entries };
-			// or: var chart = new LineChart() { Entries = entries };
-			// or: var chart = new DonutChart() { Entries = entries };
-			// or: var chart = new RadialGaugeChart() { Entries = entries };
-			// or: var chart = new RadarChart() { Entries = entries };
+			consumptionChartView.Chart = chart;
 
-			this.chartView.Chart = chart;
+			entries = new[]
+			{
+				new Microcharts.Entry(12088)
+				{
+					Label = "Wednesday",
+					ValueLabel = "12,0",
+					Color = SKColor.Parse("#266489")
+				},
+				new Microcharts.Entry(14629)
+				{
+					Label = "Thursday",
+					ValueLabel = "14,6",
+					Color = SKColor.Parse("#68B9C0")
+				},
+				new Microcharts.Entry(16978)
+					{
+					Label = "Friday",
+					ValueLabel = "16,9",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(20410)
+					{
+					Label = "Saturday",
+					ValueLabel = "20,4",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(1964)
+					{
+					Label = "Sunday",
+					ValueLabel = "1,9",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(4904)
+					{
+					Label = "Monday",
+					ValueLabel = "4,9",
+					Color = SKColor.Parse("#90D585")
+				},
+				new Microcharts.Entry(1354)
+					{
+					Label = "Tuesday",
+					ValueLabel = "1,3",
+					Color = SKColor.Parse("#90D585")
+				}
+			};
+
+			chart = new BarChart() { Entries = entries };
+			generationChartView.Chart = chart;
 		}
 	}
 }
