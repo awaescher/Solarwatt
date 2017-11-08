@@ -67,7 +67,7 @@ namespace Sundays.Client.App
 				}
 			};
 
-			var chart = new BarChart() { Entries = entries };
+			var chart = new BarChart() { Entries = entries, BackgroundColor = SKColor.Empty };
 			consumptionChartView.Chart = chart;
 
 			entries = new[]
@@ -116,7 +116,7 @@ namespace Sundays.Client.App
 				}
 			};
 
-			chart = new BarChart() { Entries = entries };
+			chart = new BarChart() { Entries = entries, BackgroundColor = SKColor.Empty };
 			generationChartView.Chart = chart;
 		}
 	}

@@ -5,7 +5,7 @@
                 xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
                 x:Class="Sundays.Client.App.MainPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+        <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" Padding="30">
             <microcharts:ChartView x:Name="generationChartView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
             <microcharts:ChartView x:Name="consumptionChartView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
         </StackLayout>
