@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sundays.Console", "Sundays.Console\Sundays.Console.csproj", "{7F47F54A-895E-465B-9A16-FD4F2EB5A21B}"
 EndProject
@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sundays.Client.App.UWP", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sundays.Client.App.Android", "Sundays.Client.App\Sundays.Client.App.Android\Sundays.Client.App.Android.csproj", "{D14E3F26-1820-4FEF-9015-E42C8E8B4E05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sundays.Data", "Sundays.Data\Sundays.Data.csproj", "{4EC3A8F6-E487-488F-9A6F-03775DBF0A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sundays.Data", "Sundays.Data\Sundays.Data.csproj", "{4EC3A8F6-E487-488F-9A6F-03775DBF0A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sundays.Data.Solarwatt", "Sundays.Data.Solarwatt\Sundays.Data.Solarwatt.csproj", "{52B37321-D0B6-4889-AFB2-9DF90DA7C900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sundays.Data.Solarwatt", "Sundays.Data.Solarwatt\Sundays.Data.Solarwatt.csproj", "{52B37321-D0B6-4889-AFB2-9DF90DA7C900}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -218,6 +218,8 @@ Global
 		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.AppStore|x86.Build.0 = Release|x86
 		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.AppStore|x86.Deploy.0 = Release|x86
 		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.Debug|Any CPU.Build.0 = Debug|x86
+		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.Debug|ARM.ActiveCfg = Debug|ARM
 		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.Debug|ARM.Build.0 = Debug|ARM
 		{CF20698B-427F-45DA-89A9-4E7998D69D5E}.Debug|ARM.Deploy.0 = Debug|ARM

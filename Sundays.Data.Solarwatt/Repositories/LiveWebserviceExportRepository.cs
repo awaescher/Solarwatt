@@ -39,7 +39,8 @@ namespace Solarwatt.Api.Repositories
 				Proxy = Connection.Proxy,
 				PreAuthenticate = true,
 				UseDefaultCredentials = false,
-				CookieContainer = _cookieContainer
+				CookieContainer = _cookieContainer,
+				AutomaticDecompression = DecompressionMethods.GZip
 			};
 			var client = new HttpClient(handler);
 			client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
@@ -146,9 +147,8 @@ namespace Solarwatt.Api.Repositories
 			client.DefaultRequestHeaders.Add("Referer", "https://desktop.energy-manager.de/index.html");
 			client.DefaultRequestHeaders.Add("Accept-Language", "de-DE,de;q=0.8");
 			client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
-
-			var response = await client.GetAsync(client.BaseAddress);
-			var responseString = await response.Content.ReadAsStringAsync();
+		
+			var responseString = await client.GetStringAsync(client.BaseAddress);
 
 			var tokenMatch = Regex.Match(responseString, @"accessToken:\s*'(?<token>.*)'");
 			return tokenMatch.Groups["token"].Value;
