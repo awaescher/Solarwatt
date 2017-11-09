@@ -49,8 +49,8 @@ namespace Solarwatt.Api.Connection
 
 				if (hasProxyUserDomain && hasProxyUser)
 				{
-					proxy = WebRequest.GetSystemWebProxy();
-					proxy.Credentials = new NetworkCredential(ProxyUser, ProxyPassword ?? "", ProxyUserDomain);
+					//proxy = WebRequest.get
+					//proxy.Credentials = new NetworkCredential(ProxyUser, ProxyPassword ?? "", ProxyUserDomain);
 				}
 
 				return proxy;

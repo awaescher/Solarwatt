@@ -166,50 +166,50 @@ namespace TinyJson
 				splitArrayPool.Push(elems);
 				return newArray;
 			}
-			if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
-			{
-				Type listType = type.GetGenericArguments()[0];
-				if (json[0] != '[' || json[json.Length - 1] != ']')
-					return null;
+			//if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+			//{
+			//	Type listType = type.GetGenericArguments()[0];
+			//	if (json[0] != '[' || json[json.Length - 1] != ']')
+			//		return null;
 
-				List<string> elems = Split(json);
-				var list = (IList)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count });
-				for (int i = 0; i < elems.Count; i++)
-					list.Add(ParseValue(listType, elems[i]));
-				splitArrayPool.Push(elems);
-				return list;
-			}
-			if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
-			{
-				Type keyType, valueType;
-				{
-					Type[] args = type.GetGenericArguments();
-					keyType = args[0];
-					valueType = args[1];
-				}
+			//	List<string> elems = Split(json);
+			//	var list = (IList)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count });
+			//	for (int i = 0; i < elems.Count; i++)
+			//		list.Add(ParseValue(listType, elems[i]));
+			//	splitArrayPool.Push(elems);
+			//	return list;
+			//}
+			//if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+			//{
+			//	Type keyType, valueType;
+			//	{
+			//		Type[] args = type.GetGenericArguments();
+			//		keyType = args[0];
+			//		valueType = args[1];
+			//	}
 
-				//Refuse to parse dictionary keys that aren't of type string
-				if (keyType != typeof(string))
-					return null;
-				//Must be a valid dictionary element
-				if (json[0] != '{' || json[json.Length - 1] != '}')
-					return null;
-				//The list is split into key/value pairs only, this means the split must be divisible by 2 to be valid JSON
-				List<string> elems = Split(json);
-				if (elems.Count % 2 != 0)
-					return null;
+			//	//Refuse to parse dictionary keys that aren't of type string
+			//	if (keyType != typeof(string))
+			//		return null;
+			//	//Must be a valid dictionary element
+			//	if (json[0] != '{' || json[json.Length - 1] != '}')
+			//		return null;
+			//	//The list is split into key/value pairs only, this means the split must be divisible by 2 to be valid JSON
+			//	List<string> elems = Split(json);
+			//	if (elems.Count % 2 != 0)
+			//		return null;
 
-				var dictionary = (IDictionary)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count / 2 });
-				for (int i = 0; i < elems.Count; i += 2)
-				{
-					if (elems[i].Length <= 2)
-						continue;
-					string keyValue = elems[i].Substring(1, elems[i].Length - 2);
-					object val = ParseValue(valueType, elems[i + 1]);
-					dictionary.Add(keyValue, val);
-				}
-				return dictionary;
-			}
+			//	var dictionary = (IDictionary)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count / 2 });
+			//	for (int i = 0; i < elems.Count; i += 2)
+			//	{
+			//		if (elems[i].Length <= 2)
+			//			continue;
+			//		string keyValue = elems[i].Substring(1, elems[i].Length - 2);
+			//		object val = ParseValue(valueType, elems[i + 1]);
+			//		dictionary.Add(keyValue, val);
+			//	}
+			//	return dictionary;
+			//}
 			if (type == typeof(object))
 			{
 				return ParseAnonymousValue(json);
@@ -274,7 +274,8 @@ namespace TinyJson
 
 		static object ParseObject(Type type, string json)
 		{
-			object instance = FormatterServices.GetUninitializedObject(type);
+			//object instance = FormatterServices.GetUninitializedObject(type);
+			object instance = Activator.CreateInstance(type);
 
 			//The list is split into key/value pairs only, this means the split must be divisible by 2 to be valid JSON
 			List<string> elems = Split(json);

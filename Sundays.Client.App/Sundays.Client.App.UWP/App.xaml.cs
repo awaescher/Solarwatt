@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -117,6 +118,32 @@ namespace Sundays.Client.App.UWP
 			var deferral = e.SuspendingOperation.GetDeferral();
 			//TODO: Save application state and stop any background activity
 			deferral.Complete();
+		}
+
+		protected override void OnWindowCreated(WindowCreatedEventArgs args)
+		{
+			base.OnWindowCreated(args);
+
+			var connection = new Solarwatt.Api.Connection.DirtyHardcodedTestConnection();
+			Task.Run(async () =>
+			{
+				await Run(
+					new Solarwatt.Api.SolarwattSundayProvider(
+						new Solarwatt.Api.Repositories.LiveWebserviceExportRepository(connection),
+						new Solarwatt.Api.SolarwattExportSundayConverter()
+						)
+					);
+			}).Wait();
+		}
+
+		static async Task<bool> Run(ISundayProvider provider)
+		{
+
+			const int DAYS = 7;
+			var from = DateTime.Today.AddDays(-1 * (DAYS - 1));
+			var days = await provider.Get(from, DateTime.Today);
+
+			return await Task.FromResult(true);
 		}
 	}
 }

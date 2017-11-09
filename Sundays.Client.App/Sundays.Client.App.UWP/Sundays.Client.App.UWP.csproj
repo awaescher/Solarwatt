@@ -93,6 +93,51 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Connection\DirtyHardcodedTestConnection.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Connection\DirtyHardcodedTestConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Connection\ISolarwattConnection.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Connection\ISolarwattConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Connection\SolarwattConnection.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Connection\SolarwattConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Dto\LoginResponse.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Dto\LoginResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Helper\DateRange.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Helper\DateRange.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Helper\DateUtils.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Helper\DateUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Repositories\IExportRepository.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Repositories\IExportRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Repositories\LiveWebserviceExportRepository.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Repositories\LiveWebserviceExportRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\Repositories\TestExportRepository.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\Repositories\TestExportRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\SolarwattExportSundayConverter.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\SolarwattExportSundayConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\SolarwattSundayProvider.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\SolarwattSundayProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data.Solarwatt\TinyJson.cs">
+      <Link>LinkedCode\Sundays.Data.Solarwatt\TinyJson.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data\ISundayProvider.cs">
+      <Link>LinkedCode\Solarwatt.Data\ISundayProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data\Sunday.cs">
+      <Link>LinkedCode\Solarwatt.Data\Sunday.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sundays.Data\SundayConverter.cs">
+      <Link>LinkedCode\Solarwatt.Data\SundayConverter.cs</Link>
+    </Compile>
     <Compile Include="AcrylicPageRenderer.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

@@ -70,12 +70,12 @@ namespace Solarwatt.Api.Repositories
 
 			var items = new Dictionary<string, string>();
 
-			items.Add("Host", "auth.energy-manager.de");
-			items.Add("Accept", "application/json, text/plain, */*");
-			items.Add("Content-Type", "application/x-www-form-urlencoded");
-			items.Add("Accept-Language", "de-DE,de;q=0.8");
-			items.Add("Accept-Encoding", "gzip, deflate, br");
-			items.Add("Referer", $"https://auth.energy-manager.de/index.html?AuthzReqHash={AuthzReqHash}&appEntryUri=https%3A%2F%2Fdesktop.energy-manager.de%2F");
+			client.DefaultRequestHeaders.Add("Host", "auth.energy-manager.de");
+			client.DefaultRequestHeaders.Add("Accept", "application/json, text/plain, */*");
+			//client.DefaultRequestHeaders.Add("Content-Type", "application/x-www-form-urlencoded");
+			client.DefaultRequestHeaders.Add("Accept-Language", "de-DE,de;q=0.8");
+			client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
+			client.DefaultRequestHeaders.Add("Referer", $"https://auth.energy-manager.de/index.html?AuthzReqHash={AuthzReqHash}&appEntryUri=https%3A%2F%2Fdesktop.energy-manager.de%2F");
 
 			items.Add("username", Connection.UserName);
 			items.Add("password", Connection.Password);
@@ -93,7 +93,7 @@ namespace Solarwatt.Api.Repositories
 			var response = await client.PostAsync(client.BaseAddress, content);
 			var responseString = await response.Content.ReadAsStringAsync();
 
-			SessionId = _cookieContainer.GetCookies(client.BaseAddress)[0].Value;
+			SessionId = _cookieContainer.GetCookies(client.BaseAddress).OfType<Cookie>().First().Value;
 
 			return TinyJson.JSONParser.FromJson<LoginResponse>(responseString);
 		}
