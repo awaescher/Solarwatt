@@ -53,13 +53,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Solarwatt.Api\Solarwatt.Api.csproj">
-      <Project>{6fefe707-1e2f-42fb-b5c2-1ab3b03989ed}</Project>
-      <Name>Solarwatt.Api</Name>
+    <ProjectReference Include="..\Sundays.Data.Solarwatt\Sundays.Data.Solarwatt.csproj">
+      <Project>{52b37321-d0b6-4889-afb2-9df90da7c900}</Project>
+      <Name>Sundays.Data.Solarwatt</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sundays\Sundays.csproj">
-      <Project>{461EFFE1-19AD-48AB-88D1-C79974E49789}</Project>
-      <Name>Sundays</Name>
+    <ProjectReference Include="..\Sundays.Data\Sundays.Data.csproj">
+      <Project>{4ec3a8f6-e487-488f-9a6f-03775dbf0a22}</Project>
+      <Name>Sundays.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

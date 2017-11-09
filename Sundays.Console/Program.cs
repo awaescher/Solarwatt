@@ -31,10 +31,11 @@ namespace Solarwatt.Console
 				container.Register<IExportRepository, TestExportRepository>();
 			}
 
-			Run(container.Resolve<ISundayProvider>());
+			Task.Run(() => Run(container.Resolve<ISundayProvider>())).Wait();
+
 		}
 
-		static void Run(ISundayProvider provider)
+		static async Task<bool> Run(ISundayProvider provider)
 		{
 			var connection = new DirtyHardcodedTestConnection();
 
@@ -52,7 +53,7 @@ namespace Solarwatt.Console
 			const int DAYS = 7;
 			System.Console.WriteLine($"Overview: Last {DAYS} days");
 			var from = DateTime.Today.AddDays(-1 * (DAYS  - 1));
-			var days = provider.Get(from, DateTime.Today);
+			var days = await provider.Get(from, DateTime.Today);
 
 			foreach (var day in days)
 				System.Console.WriteLine(day.ToString());
@@ -60,6 +61,8 @@ namespace Solarwatt.Console
 			System.Console.WriteLine();
 			System.Console.WriteLine("Press any key to quit.");
 			System.Console.ReadKey();
+
+			return await Task.FromResult(true);
 		}
 
 		private static string ReadConsoleLineWithFallback(string fallback)
