@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
 using Xamarin.Forms.Platform.UWP;
 
@@ -27,11 +24,6 @@ namespace Sundays.Client.App.UWP
 				acrylicBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
 
 				Children.OfType<LayoutRenderer>().Single().Background = acrylicBrush;
-
-				CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-				ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-				titleBar.ButtonBackgroundColor = Colors.Transparent;
-				titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			}
 		}
 	}

@@ -5,8 +5,11 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,12 +42,13 @@ namespace Sundays.Client.App.UWP
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
+			ExtendMainViewIntoTitlebar();
 
 #if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
+			if (System.Diagnostics.Debugger.IsAttached)
+			{
+				this.DebugSettings.EnableFrameRateCounter = true;
+			}
 #endif
 
 			Frame rootFrame = Window.Current.Content as Frame;
@@ -78,6 +82,17 @@ namespace Sundays.Client.App.UWP
 			}
 			// Ensure the current window is active
 			Window.Current.Activate();
+		}
+
+		private static void ExtendMainViewIntoTitlebar()
+		{
+			if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent(typeof(XamlCompositionBrushBase).FullName))
+			{
+				CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+				ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+				titleBar.ButtonBackgroundColor = Colors.Transparent;
+				titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+			}
 		}
 
 		/// <summary>
