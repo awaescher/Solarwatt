@@ -37,7 +37,7 @@ namespace Solarwatt.Api
 			{
 				exportRows.RemoveAll(r => r.Date.Date == DateTime.Today);
 
-				var todayStrings = Repository.GetExport(DateTime.Today, 15);
+				var todayStrings = await Repository.GetExport(DateTime.Today, 15);
 				var todayRows = Converter.Convert(todayStrings);
 
 				exportRows.AddRange(todayRows);
