@@ -1,0 +1,10 @@
+﻿If publishing via the commited pubxml (SundaysFunction\Properties\PublishProfiles) file is not possible, publish to a folder.
+This should write the following files and folders:
+
+\bin
+\Sundays
+host.json
+
+It's sad but true: Copy them filewise to the storage on Azure.
+Head to the Azure Function, go to tab "Platform features" and there to "App Service-Editor".
+This is a basic file editor. Good luck.
