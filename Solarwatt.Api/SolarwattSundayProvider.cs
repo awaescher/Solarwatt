@@ -1,5 +1,6 @@
 ﻿using Solarwatt.Api.Repositories;
 using Sundays;
+using Sundays.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

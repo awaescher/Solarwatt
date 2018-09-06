@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sundays", "Sundays\Sundays.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SundaysFunction", "SundaysFunction\SundaysFunction.csproj", "{95B7F3F1-63B5-4BD7-A3EC-6069E5951365}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{71057D7C-E32D-4005-92C4-93F07CB58025}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{95B7F3F1-63B5-4BD7-A3EC-6069E5951365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95B7F3F1-63B5-4BD7-A3EC-6069E5951365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95B7F3F1-63B5-4BD7-A3EC-6069E5951365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71057D7C-E32D-4005-92C4-93F07CB58025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71057D7C-E32D-4005-92C4-93F07CB58025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71057D7C-E32D-4005-92C4-93F07CB58025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71057D7C-E32D-4005-92C4-93F07CB58025}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

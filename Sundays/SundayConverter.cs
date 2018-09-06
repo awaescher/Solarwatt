@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sundays.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,19 +26,23 @@ namespace Sundays
 				}
 				else
 				{
-					//existingRow.Date = Convert.ToDateTime(values[0]),
 					existingRow.PowerConsumptionWh += row.PowerConsumptionWh;
 					existingRow.PowerGenerationWh += row.PowerGenerationWh;
 					existingRow.FeedInWh += row.FeedInWh;
 					existingRow.PurchaseWh += row.PurchaseWh;
 					existingRow.BatterySupplyWh += row.BatterySupplyWh;
 					existingRow.BatteryChargeWh += row.BatteryChargeWh;
-					existingRow.BatteryChargePercent += row.BatteryChargePercent;
 					existingRow.PrivateUseWh += row.PrivateUseWh;
 					existingRow.FeedIn2Wh += row.FeedIn2Wh;
 					existingRow.PrivateUseFromPvWh += row.PrivateUseFromPvWh;
 					existingRow.PowerGenerationAtLocationWh += row.PowerGenerationAtLocationWh;
 					existingRow.PowerGenerationTotalWh += row.PowerGenerationTotalWh;
+
+					// take the last battery charge percent value of the day
+					// --> latest are automatically the next ones because of the OrderBy()
+					// leave the empty ones (nulls) out, these are rows in the future which have no values yet
+					if (row.BatteryChargePercent.HasValue)
+						existingRow.BatteryChargePercent = row.BatteryChargePercent;
 				}
 			}
 

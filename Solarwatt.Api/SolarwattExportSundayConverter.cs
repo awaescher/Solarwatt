@@ -1,4 +1,5 @@
 ﻿using Sundays;
+using Sundays.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace Solarwatt.Api
 				PurchaseWh = TryParseSingle(values[4], culture),
 				BatterySupplyWh = TryParseSingle(values[5], culture),
 				BatteryChargeWh = TryParseSingle(values[6], culture),
-				BatteryChargePercent = TryParseSingle(values[7], culture),
+				BatteryChargePercent = TryParseNullableSingle(values[7], culture), // these values are not summed up, the lastest one is the correct one -> don't take "--" as 0 here, we need to differentiate.
 				PrivateUseWh = TryParseSingle(values[8], culture),
 				FeedIn2Wh = TryParseSingle(values[9], culture),
 				PrivateUseFromPvWh = TryParseSingle(values[10], culture),
@@ -58,6 +59,15 @@ namespace Solarwatt.Api
 
 			return 0.0f;
 		}
+
+		private static float? TryParseNullableSingle(string value, IFormatProvider formatProvider)
+		{
+			if (Single.TryParse(value, System.Globalization.NumberStyles.Any, formatProvider, out float parsedValue))
+				return parsedValue;
+
+			return null;
+		}
+
 
 		public static bool IsDataRow(string line)
 		{
