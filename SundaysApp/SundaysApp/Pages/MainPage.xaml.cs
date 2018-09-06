@@ -36,8 +36,11 @@ namespace SundaysApp.Pages
             if (!e.PropertyName.Equals("Sundays"))
                 return;
 
-            generationChartView.Chart = generationChartView.Chart ?? new BarChart() {  };
-            consumptionChartView.Chart = consumptionChartView.Chart ?? new BarChart() { };
+            const int LABEL_SIZE = 70;
+
+            generationChartView.Chart = generationChartView.Chart ?? new BarChart() { LabelTextSize = LABEL_SIZE };
+            consumptionChartView.Chart = consumptionChartView.Chart ?? new BarChart() { LabelTextSize = LABEL_SIZE };
+            batteryChartView.Chart = batteryChartView.Chart ?? new RadialGaugeChart() { MinValue = 0, MaxValue = 100, LabelTextSize = LABEL_SIZE };
 
             var dateFormat = Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
 
@@ -45,10 +48,12 @@ namespace SundaysApp.Pages
                 .Sundays.Where(d => d.Date <= DateTime.Today)
                 .ToList();
 
+            var today = sundays.FirstOrDefault(s => s.Date.Date == DateTime.Today);
+
             var generationEntries = sundays.Select(d =>
                 new Microcharts.Entry(d.PowerGenerationTotalWh)
                 {
-                    ValueLabel = (d.PowerGenerationTotalWh / 1000).ToString("F1") + " kWh",
+                    ValueLabel = (d.PowerGenerationTotalWh / 1000).ToString("F1"),
                     Label = dateFormat.GetShortestDayName(d.Date.DayOfWeek),
                     Color = SKColor.Parse(d.Date == DateTime.Today ? "#b0f9a4" : "#90D585")
                 }
@@ -57,16 +62,39 @@ namespace SundaysApp.Pages
             var consumptionEntries = sundays.Select(d =>
                 new Microcharts.Entry(-1 * d.PowerConsumptionWh)
                 {
-                    ValueLabel = (-1 * d.PowerConsumptionWh / 1000).ToString("F1") + " kWh",
-                    // Label = dateFormat.GetShortestDayName(d.Date.DayOfWeek), // on week scale's enough from the first chart
-                Color = SKColor.Parse(d.Date == DateTime.Today ? "#f9ada4" : "#d58d85")
+                    ValueLabel = (d.PowerConsumptionWh / 1000).ToString("F1"),
+                    Color = SKColor.Parse(d.Date == DateTime.Today ? "#f9ada4" : "#d58d85")
                 }
             );
 
             generationChartView.Chart.Entries = generationEntries;
             consumptionChartView.Chart.Entries = consumptionEntries;
 
+            var batteryChargePercent = (today?.BatteryChargePercent ?? 0) / 10;
+            batteryChartView.Chart.Entries = new[] { GetBatteryEntry(batteryChargePercent) };
+
             EnsureSameScale(generationChartView.Chart as BarChart, consumptionChartView.Chart as BarChart);
+        }
+
+        private Microcharts.Entry GetBatteryEntry(float chargePercent)
+        {
+            var entry = new Microcharts.Entry(chargePercent);
+
+            var color = "#f9ada4"; // Red
+
+            if (chargePercent > 20)
+                color = "#c6d585"; // Greenyellow
+
+            if (chargePercent > 60)
+                color = "#90D585"; // Green
+
+            if (chargePercent > 80)
+                color = "#78ce6b"; // Satisfyingly green green
+
+            entry.Color = SKColor.Parse(color);
+            entry.ValueLabel = chargePercent.ToString("N0") + "%";
+
+            return entry;
         }
 
         private void EnsureSameScale(BarChart generationChart, BarChart consumptionChart)

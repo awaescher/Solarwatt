@@ -18,5 +18,11 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             BackgroundColor="Red" />
+        <microcharts:ChartView
+            x:Name="batteryChartView"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="Olive" />
+
     </StackLayout>
 </ContentPage>
