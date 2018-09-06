@@ -4,20 +4,31 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json;
 using Sundays;
+using Sundays.Model;
+using SundaysApp.Model;
 
-namespace SundaysApp
+namespace SundaysApp.Services
 {
-    public class SundaysFunctionService
+    public class SundaysFunctionService : ISundayService
     {
         private HttpClient _httpClient;
         private JsonSerializer _serializer;
 
-        private const string URL = "https://sundaysfunctionapp.azurewebsites.net/api/from/{FROM}/to/{TO}/user/{USER}/password/{PASSWORD}/devicelocation/{DEVICELOCATION}/devicename/{DEVICENAME}code={FUNCTIONCODE}";
+        private const string URL = "https://sundaysfunctionapp.azurewebsites.net/api/from/{FROM}/to/{TO}/user/{USER}/password/{PASSWORD}/devicelocation/{DEVICELOCATION}/devicename/{DEVICENAME}?code={APICODE}";
 
-        public async Task<IEnumerable<Sunday>> Get(SundaysAuth auth, DateTime from, DateTime to)
+
+        public SundaysFunctionService(IAuthService authService)
         {
+            AuthService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
+        public async Task<IEnumerable<Sunday>> Get(DateTime from, DateTime to)
+        {
+            var auth = AuthService.GetAuth();
+
             _httpClient = _httpClient ?? CreateHttpClient();
             _serializer = _serializer ?? new JsonSerializer();
 
@@ -28,8 +39,9 @@ namespace SundaysApp
                 .Replace("{PASSWORD}", auth.Password)
                 .Replace("{DEVICELOCATION}", auth.DeviceLocation)
                 .Replace("{DEVICENAME}", auth.DeviceName)
-                .Replace("{FUNCTIONCODE}", "lol");
+                .Replace("{APICODE}", auth.ApiCode);
 
+            url = HttpUtility.UrlPathEncode(url);
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
@@ -47,5 +59,7 @@ namespace SundaysApp
             client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             return client;
         }
+
+        public IAuthService AuthService { get; }
     }
 }

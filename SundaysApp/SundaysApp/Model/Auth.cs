@@ -1,7 +1,8 @@
 ﻿using System;
-namespace SundaysApp
+namespace SundaysApp.Model
 {
-    public class SundaysAuth
+    [System.Diagnostics.DebuggerDisplay("{DeviceName}")]
+    public class Auth
     {
         /// <summary>
         /// Gets the device full name like "Lastname, City", for example
@@ -27,5 +28,19 @@ namespace SundaysApp
         /// </summary>
         /// <returns></returns>
         public string DeviceLocation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the code to access the Sundays function api.
+        /// </summary>
+        public string ApiCode { get; set; }
+
+        /// <summary>
+        /// Gets whether all values are set properly
+        /// </summary>
+        public bool IsValid => !string.IsNullOrEmpty(DeviceName) &&
+                                  !string.IsNullOrEmpty(UserName) &&
+                                  !string.IsNullOrEmpty(Password) &&
+                                  !string.IsNullOrEmpty(DeviceLocation) &&
+                                  !string.IsNullOrEmpty(ApiCode);
     }
 }

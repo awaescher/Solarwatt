@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sundays
+namespace Sundays.Model
 {
 	[System.Diagnostics.DebuggerDisplay("{Date}, Consumption:{PowerConsumptionWh} Generation:{PowerGenerationWh}")]
 	public class Sunday

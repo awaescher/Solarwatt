@@ -1,4 +1,7 @@
 ﻿using System;
+using FreshMvvm;
+using SundaysApp.PageModels;
+using SundaysApp.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +14,16 @@ namespace SundaysApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            var ioc = FreshIOC.Container;
+
+            ioc.Register<IAuthService, PersistentAuthService>();
+            ioc.Register<ISundayService, SundaysFunctionService>();
+            ioc.Register<ICryptoService, AesCryptoService>();
+
+            var mainPageModel = FreshPageModelResolver.ResolvePageModel<MainPageModel>();
+            var navigationPage = new NavigationPage(mainPageModel);
+
+            MainPage = navigationPage.RootPage;
         }
 
         protected override void OnStart()
