@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundaysApp.iOS", "SundaysAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundaysApp", "SundaysApp\SundaysApp\SundaysApp.csproj", "{FD3D6BA2-55EF-4496-A797-478CE12E45EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SundaysApp.TodayExtension", "SundaysApp\SundaysApp.TodayExtension\SundaysApp.TodayExtension.csproj", "{DB289CCC-9A68-468C-AC86-0212B91DACDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,22 @@ Global
 		{FD3D6BA2-55EF-4496-A797-478CE12E45EE}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{FD3D6BA2-55EF-4496-A797-478CE12E45EE}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
 		{FD3D6BA2-55EF-4496-A797-478CE12E45EE}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Release|iPhone.Build.0 = Release|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{DB289CCC-9A68-468C-AC86-0212B91DACDC}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

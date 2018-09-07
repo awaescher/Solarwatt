@@ -19,14 +19,14 @@
     <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.2.2" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="PageModels\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Model\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\..\Sundays\Sunday.cs">
       <Link>Model\Sunday.cs</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageModels\" />
-    <Folder Include="Pages\" />
-    <Folder Include="Services\" />
-    <Folder Include="Model\" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -14,7 +15,10 @@ namespace SundaysApp.Services
 {
     public class SundaysFunctionService : ISundayService
     {
+#if NO_HTTPCLIENT
+#else
         private HttpClient _httpClient;
+#endif
         private JsonSerializer _serializer;
 
         private const string URL = "https://sundaysfunctionapp.azurewebsites.net/api/from/{FROM}/to/{TO}/user/{USER}/password/{PASSWORD}/devicelocation/{DEVICELOCATION}/devicename/{DEVICENAME}?code={APICODE}";
@@ -29,7 +33,9 @@ namespace SundaysApp.Services
         {
             var auth = AuthService.GetAuth();
 
+#if !NO_HTTPCLIENT
             _httpClient = _httpClient ?? CreateHttpClient();
+#endif
             _serializer = _serializer ?? new JsonSerializer();
 
             var url = URL
@@ -41,6 +47,19 @@ namespace SundaysApp.Services
                 .Replace("{DEVICENAME}", auth.DeviceName)
                 .Replace("{APICODE}", auth.ApiCode);
 
+#if NO_HTTPCLIENT
+            var request = (HttpWebRequest)HttpWebRequest.Create(url);
+            var tcs = new TaskCompletionSource<IEnumerable<Sunday>>();
+
+            var response = (HttpWebResponse)(await request.GetResponseAsync());
+
+            using (var stream = response.GetResponseStream())
+            using (var reader = new StreamReader(stream))
+            using (var json = new JsonTextReader(reader))
+            {
+                return _serializer.Deserialize<IEnumerable<Sunday>>(json);
+            }
+#else
             url = HttpUtility.UrlPathEncode(url);
             var response = await _httpClient.GetAsync(url);
 
@@ -53,14 +72,18 @@ namespace SundaysApp.Services
             {
                 return _serializer.Deserialize<IEnumerable<Sunday>>(json);
             }
+#endif
         }
 
+#if NO_HTTPCLIENT
+#else
         private HttpClient CreateHttpClient()
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             return client;
         }
+#endif
 
         public IAuthService AuthService { get; }
 
