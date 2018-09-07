@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Refractored.XamForms.PullToRefresh.iOS;
 using UIKit;
 
 namespace SundaysApp.iOS
@@ -24,6 +25,8 @@ namespace SundaysApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            PullToRefreshLayoutRenderer.Init();
 
             return base.FinishedLaunching(app, options);
         }

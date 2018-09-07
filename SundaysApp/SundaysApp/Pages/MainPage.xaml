@@ -6,23 +6,36 @@
     xmlns:local="clr-namespace:SundaysApp"
     x:Class="SundaysApp.Pages.MainPage"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
     ios:Page.UseSafeArea="true">
-    <StackLayout>
-        <microcharts:ChartView
-            x:Name="generationChartView"
+    <controls:PullToRefreshLayout
+        IsPullToRefreshEnabled="True"
+        RefreshCommand="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsLoading}">
+        <ScrollView x:Name="scrollView"
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            BackgroundColor="Green" />
-        <microcharts:ChartView
-            x:Name="consumptionChartView"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            BackgroundColor="Red" />
-        <microcharts:ChartView
-            x:Name="batteryChartView"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            BackgroundColor="Olive" />
-
-    </StackLayout>
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <Label
+                    Text="Loading ..."
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    IsVisible="{Binding IsLoading}" />
+                <microcharts:ChartView
+                    x:Name="generationChartView"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding FinishedLoading}" />
+                <microcharts:ChartView
+                    x:Name="consumptionChartView"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding FinishedLoading}" />
+                <microcharts:ChartView
+                    x:Name="batteryChartView"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding FinishedLoading}"/>
+            </StackLayout>
+        </ScrollView>
+    </controls:PullToRefreshLayout>
 </ContentPage>

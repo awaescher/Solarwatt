@@ -43,7 +43,9 @@ namespace SundaysApp.Services
 
             url = HttpUtility.UrlPathEncode(url);
             var response = await _httpClient.GetAsync(url);
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+                return new List<Sunday>();
 
             using (var stream = await response.Content.ReadAsStreamAsync())
             using (var reader = new StreamReader(stream))
@@ -61,5 +63,7 @@ namespace SundaysApp.Services
         }
 
         public IAuthService AuthService { get; }
+
+        public bool IsConfigured => AuthService?.GetAuth()?.IsValid ?? false;
     }
 }

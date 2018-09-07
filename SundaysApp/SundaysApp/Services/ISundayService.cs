@@ -9,5 +9,7 @@ namespace SundaysApp.Services
     public interface ISundayService
     {
         Task<IEnumerable<Sunday>> Get(DateTime from, DateTime to);
+
+        bool IsConfigured { get; }
     }
 }

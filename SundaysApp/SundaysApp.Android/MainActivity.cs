@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Refractored.XamForms.PullToRefresh.Droid;
 
 namespace SundaysApp.Droid
 {
@@ -19,6 +20,9 @@ namespace SundaysApp.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            PullToRefreshLayoutRenderer.Init();
+
             LoadApplication(new App());
         }
     }

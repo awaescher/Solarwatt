@@ -36,7 +36,7 @@ namespace SundaysApp.Pages
             if (!e.PropertyName.Equals("Sundays"))
                 return;
 
-            const int LABEL_SIZE = 70;
+            const int LABEL_SIZE = 60;
 
             generationChartView.Chart = generationChartView.Chart ?? new BarChart() { LabelTextSize = LABEL_SIZE };
             consumptionChartView.Chart = consumptionChartView.Chart ?? new BarChart() { LabelTextSize = LABEL_SIZE };
@@ -70,10 +70,23 @@ namespace SundaysApp.Pages
             generationChartView.Chart.Entries = generationEntries;
             consumptionChartView.Chart.Entries = consumptionEntries;
 
-            var batteryChargePercent = (today?.BatteryChargePercent ?? 0) / 10;
-            batteryChartView.Chart.Entries = new[] { GetBatteryEntry(batteryChargePercent) };
+            batteryChartView.Chart.Entries = new[] { GetBatteryEntry(today?.BatteryChargePercent ?? 0) };
 
             EnsureSameScale(generationChartView.Chart as BarChart, consumptionChartView.Chart as BarChart);
+
+            // fixes: https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout/issues/51
+            Task.Delay(100).ContinueWith(t => Device.BeginInvokeOnMainThread(() => scrollView.ScrollToAsync(0, 0, true)));
+        }
+
+        protected override void LayoutChildren(double x, double y, double width, double height)
+        {
+            var charts = new[] { batteryChartView, generationChartView, consumptionChartView };
+            var desiredHeight = this.Height / charts.Length;
+
+            foreach (var chart in charts)
+                chart.HeightRequest = desiredHeight;
+
+            base.LayoutChildren(x, y, width, height);
         }
 
         private Microcharts.Entry GetBatteryEntry(float chargePercent)

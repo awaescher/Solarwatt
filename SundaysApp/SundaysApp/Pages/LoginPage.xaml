@@ -4,5 +4,38 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="SundaysApp.Pages.LoginPage">
     <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                VerticalOptions="Center"
+                Padding="40">
+                <Label
+                    Text="User name" />
+                <Entry
+                    Text="{Binding Auth.UserName}" />
+                <Label
+                    Text="Password" />
+                <Entry
+                    Text="{Binding Auth.Password}" />
+                <Label
+                    Text="Device name" />
+                <Entry
+                    Text="{Binding Auth.DeviceName}" />
+                <Label
+                    Text="Device location" />
+                <Entry
+                    Text="{Binding Auth.DeviceLocation}" />
+                <Label
+                    Text="Api code" />
+                <Entry
+                    Text="{Binding Auth.ApiCode}" />
+                <Label
+                    Text="Login failed."
+                    TextColor="Red"
+                    IsVisible="{Binding LastAttemptFailed}" />
+                <Button
+                    Text="Log in"
+                    Command="{Binding Login}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

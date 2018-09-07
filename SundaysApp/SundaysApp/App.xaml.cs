@@ -20,10 +20,9 @@ namespace SundaysApp
             ioc.Register<ISundayService, SundaysFunctionService>();
             ioc.Register<ICryptoService, AesCryptoService>();
 
-            var mainPageModel = FreshPageModelResolver.ResolvePageModel<MainPageModel>();
-            var navigationPage = new NavigationPage(mainPageModel);
-
-            MainPage = navigationPage.RootPage;
+            var page = FreshPageModelResolver.ResolvePageModel<MainPageModel>();
+            var basicNavContainer = new FreshNavigationContainer(page);
+            MainPage = basicNavContainer;
         }
 
         protected override void OnStart()
