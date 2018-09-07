@@ -21,7 +21,7 @@ namespace Sundays.Model
 
 		public float BatteryChargeWh { get; set; }
 
-		public float BatteryChargePercent { get; set; }
+		public float? BatteryChargePercent { get; set; }
 
 		public float PrivateUseWh { get; set; }
 
@@ -43,7 +43,7 @@ namespace Sundays.Model
 				PurchaseWh,
 				BatterySupplyWh,
 				BatteryChargeWh,
-				BatteryChargePercent,
+				BatteryChargePercent?.ToString() ?? "null",
 				PrivateUseWh,
 				FeedIn2Wh,
 				PrivateUseFromPvWh,

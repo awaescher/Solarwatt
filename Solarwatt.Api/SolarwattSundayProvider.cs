@@ -1,5 +1,6 @@
 ﻿using Solarwatt.Api.Repositories;
 using Sundays;
+using Sundays.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,10 @@ namespace Solarwatt.Api
 
 				exportRows.AddRange(todayRows);
 			}
+			
+			// the export may contain rows of the last day to overcome the 00:00 border
+			// skip these, we dont want them
+			exportRows.RemoveAll(r => r.Date.Date > to.Date);
 
 			return Converter.MergeByDate(exportRows);
 		}
