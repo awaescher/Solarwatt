@@ -15,10 +15,7 @@ namespace SundaysApp.Services
 {
     public class SundaysFunctionService : ISundayService
     {
-#if NO_HTTPCLIENT
-#else
-        private HttpClient _httpClient;
-#endif
+        //private System.Net.Http.HttpClient _httpClient;
         private JsonSerializer _serializer;
 
         private const string URL = "https://sundaysfunctionapp.azurewebsites.net/api/from/{FROM}/to/{TO}/user/{USER}/password/{PASSWORD}/devicelocation/{DEVICELOCATION}/devicename/{DEVICENAME}?code={APICODE}";
@@ -33,9 +30,7 @@ namespace SundaysApp.Services
         {
             var auth = AuthService.GetAuth();
 
-#if !NO_HTTPCLIENT
-            _httpClient = _httpClient ?? CreateHttpClient();
-#endif
+            //_httpClient = _httpClient ?? CreateHttpClient();
             _serializer = _serializer ?? new JsonSerializer();
 
             var url = URL
@@ -47,9 +42,11 @@ namespace SundaysApp.Services
                 .Replace("{DEVICENAME}", auth.DeviceName)
                 .Replace("{APICODE}", auth.ApiCode);
 
-#if NO_HTTPCLIENT
-            var request = (HttpWebRequest)HttpWebRequest.Create(url);
+            //# NO_HTTPCLIENT
+            var request = (HttpWebRequest)WebRequest.Create(url);
             var tcs = new TaskCompletionSource<IEnumerable<Sunday>>();
+
+            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, ssl) => true;
 
             var response = (HttpWebResponse)(await request.GetResponseAsync());
 
@@ -59,31 +56,27 @@ namespace SundaysApp.Services
             {
                 return _serializer.Deserialize<IEnumerable<Sunday>>(json);
             }
-#else
-            url = HttpUtility.UrlPathEncode(url);
-            var response = await _httpClient.GetAsync(url);
 
-            if (!response.IsSuccessStatusCode)
-                return new List<Sunday>();
+            //url = HttpUtility.UrlPathEncode(url);
+            //var response = await _httpClient.GetAsync(url);
 
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            using (var reader = new StreamReader(stream))
-            using (var json = new JsonTextReader(reader))
-            {
-                return _serializer.Deserialize<IEnumerable<Sunday>>(json);
-            }
-#endif
+            //if (!response.IsSuccessStatusCode)
+            //    return new List<Sunday>();
+
+            //using (var stream = await response.Content.ReadAsStreamAsync())
+            //using (var reader = new StreamReader(stream))
+            //using (var json = new JsonTextReader(reader))
+            //{
+            //    return _serializer.Deserialize<IEnumerable<Sunday>>(json);
+            //}
         }
 
-#if NO_HTTPCLIENT
-#else
-        private HttpClient CreateHttpClient()
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-            return client;
-        }
-#endif
+        //private System.Net.Http.HttpClient CreateHttpClient()
+        //{
+        //    var client = new System.Net.Http.HttpClient();
+        //    client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+        //    return client;
+        //}
 
         public IAuthService AuthService { get; }
 

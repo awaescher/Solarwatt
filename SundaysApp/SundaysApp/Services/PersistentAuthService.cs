@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Foundation;
 using Newtonsoft.Json;
 using SundaysApp.Model;
 using Xamarin.Essentials;
@@ -37,22 +38,31 @@ namespace SundaysApp.Services
         {
             try
             {
+                var fileManager = new NSFileManager();
+                var appGroupContainer = fileManager.GetContainerUrl("group.net.sodacore.sundays.sharing");
+                var appGroupContainerPath = appGroupContainer?.Path ?? "";
+
+                Console.WriteLine($"Reading {GetFileName()}");
                 var fileContent = File.ReadAllText(GetFileName());
 
+                Console.WriteLine($"Content lenght: {fileContent?.Length}");
                 if (!string.IsNullOrEmpty(fileContent))
                     fileContent = CryptoService.Decrypt(fileContent, GetUltimat3Passwprd());
 
+                Console.WriteLine($"Deserializing");
                 var auth = JsonConvert.DeserializeObject<Auth>(fileContent);
 
+                Console.WriteLine($"Auth invalid: {auth?.IsValid.ToString() ?? "{null}"}");
                 if (auth?.IsValid == false)
                     return null;
 
                 return auth;
             }
-            catch
+            catch(Exception ex)
             {
                 // well, for a fun app that's okay, I think.
                 // The user will have to enter his login once more ...
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }

@@ -29,7 +29,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Sven Eberhardt (X26FSE77D5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Andreas Waescher (3753PL65N8)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -41,19 +42,19 @@
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Sven Eberhardt (X26FSE77D5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Andreas Waescher (3753PL65N8)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Sven Eberhardt (X26FSE77D5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Andreas Waescher (3753PL65N8)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
@@ -66,7 +67,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Sven Eberhardt (X26FSE77D5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Andreas Waescher (3753PL65N8)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
@@ -80,7 +81,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Sven Eberhardt (X26FSE77D5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Andreas Waescher (3753PL65N8)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
@@ -92,7 +93,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Sven Eberhardt (X26FSE77D5)</CodesignKey>
+    <CodesignKey>iPhone Developer: Andreas Waescher (3753PL65N8)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
@@ -154,7 +155,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -162,10 +163,10 @@
       <Project>{FD3D6BA2-55EF-4496-A797-478CE12E45EE}</Project>
       <Name>SundaysApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SundaysApp.TodayExtension\SundaysApp.TodayExtension.csproj">
+    <ProjectReference Include="..\SundaysApp.iOS.Today\SundaysApp.iOS.Today.csproj">
       <IsAppExtension>true</IsAppExtension>
-      <Project>{DB289CCC-9A68-468C-AC86-0212B91DACDC}</Project>
-      <Name>SundaysApp.TodayExtension</Name>
+      <Project>{4BA1D640-A395-44CF-AC9E-88072786AC32}</Project>
+      <Name>SundaysApp.iOS.Today</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

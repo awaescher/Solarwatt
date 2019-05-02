@@ -34,7 +34,7 @@
                     IsVisible="{Binding LastAttemptFailed}" />
                 <Button
                     Text="Log in"
-                    Command="{Binding Login}" />
+                    Command="{Binding LoginCommand}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

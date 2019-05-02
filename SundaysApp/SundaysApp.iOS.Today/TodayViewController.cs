@@ -1,12 +1,11 @@
 ﻿using System;
-
 using NotificationCenter;
 using Foundation;
 using UIKit;
-using System.Linq;
 using SundaysApp.Services;
+using System.Linq;
 
-namespace SundaysApp.TodayExtension
+namespace SundaysApp.iOS.Today
 {
     public partial class TodayViewController : UIViewController, INCWidgetProviding
     {
@@ -41,6 +40,25 @@ namespace SundaysApp.TodayExtension
 
             var result = NCUpdateResult.NewData;
 
+            MainLabel.Text = "Hey Beauty";
+
+            Log("result is NewData");
+
+            var cs = new AesCryptoService();
+            Log("Got crypto");
+
+            var pas = new PersistentAuthService(cs);
+            Log("Got auth");
+
+            var sfs = new SundaysFunctionService(pas);
+            Log("Got sundays");
+
+            var a = pas.GetAuth();
+            Log($"Got auth. Is valid: {(a?.IsValid ?? false)}");
+
+            //var s = sfs.Get(DateTime.Today, DateTime.Today).GetAwaiter().GetResult();
+            //Log($"Got {(s?.Count().ToString() ?? "(null)")} sundays");
+
             //var sundayService = new SundaysFunctionService(
             //    new PersistentAuthService(
             //        new AesCryptoService()
@@ -53,7 +71,7 @@ namespace SundaysApp.TodayExtension
 
             //try
             //{
-            //    var sundays = (await sundayService.Get(from, to)).ToList();
+            //    var sundays = sundayService.Get(from, to).GetAwaiter().GetResult().ToList();
             //    result = sundays?.Count > 0 ? NCUpdateResult.NewData : NCUpdateResult.NoData;
             //}
             //catch
@@ -61,7 +79,12 @@ namespace SundaysApp.TodayExtension
             //    result = NCUpdateResult.Failed;
             //}
 
+
+            Log($"completing with {result}");
+
             completionHandler(result);
         }
+
+        private void Log(string value) => Console.WriteLine(value);
     }
 }
